@@ -78,7 +78,11 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        .exam-summary {
+            cursor: pointer;
+        }
         .exam-details {
+            display: none;
             margin-top: 10px;
         }
         .question-container {
@@ -102,6 +106,10 @@
         }
         .create-exam-btn {
             background: #007bff;
+        }
+        .exam-questions-list {
+            margin-top: 10px;
+            padding-left: 20px;
         }
     </style>
 </head>
@@ -129,7 +137,7 @@
             examCard.className = 'exam-card';
             
             examCard.innerHTML = `
-                <div class="exam-details">
+                <div class="exam-details" style="display: block;">
                     <input type="text" class="form-input exam-name" placeholder="Enter Exam Name">
                     <label>Duration: <input type="number" class="form-input exam-duration" min="1" placeholder="Minutes"></label>
                     <div class="question-container" id="question-container">
@@ -180,12 +188,24 @@
                 let finalExamCard = document.createElement('div');
                 finalExamCard.className = 'exam-card';
                 finalExamCard.innerHTML = `
-                    <h3>${examName}</h3>
-                    <p>Duration: ${examDuration} minutes</p>
-                    <p>Questions: ${questions.length}</p>
+                    <div class="exam-summary">
+                        <h3>${examName}</h3>
+                        <p>Duration: ${examDuration} minutes</p>
+                        <p>Questions: ${questions.length}</p>
+                    </div>
+                    <div class="exam-details">
+                        <h4>Questions:</h4>
+                        <ol class="exam-questions-list">
+                            ${questions.map(q => `<li>${q}</li>`).join('')}
+                        </ol>
+                    </div>
                 `;
                 
-                // Replace the creation card with the final exam card
+                finalExamCard.querySelector('.exam-summary').addEventListener('click', function() {
+                    let details = finalExamCard.querySelector('.exam-details');
+                    details.style.display = details.style.display === 'block' ? 'none' : 'block';
+                });
+                
                 examContainer.replaceChild(finalExamCard, examCard);
             });
             
