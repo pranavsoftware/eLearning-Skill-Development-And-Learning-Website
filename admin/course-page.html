@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Page</title>
+    <link rel="stylesheet" href="course-page.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2 id="course-name">Course Name</h2>
+        <a href="#manage-students" class="menu-item">Manage Students</a>
+        <a href="#papers" class="menu-item">Add/Remove Papers</a>
+        <a href="#exams" class="menu-item">Manage Exams</a>
+    </div>
+
+    <div class="navbar">
+        <span class="user-greeting">Hi, {user}</span>
+    </div>
+
+    <div class="content">
+        <h2>Welcome to the Course Panel</h2>
+        <p>Select an option below:</p>
+
+        <div class="card-container">
+            <a href="#manage-students" class="card">
+            <div class="card-img">
+                <img src="https://logowik.com/content/uploads/images/student5651.jpg" alt="Manage Students" style="width:200px">
+            </div>
+            <h3>Manage Students</h3>
+            </a>
+            <a href="#papers" class="card">
+            <div class="card-img">
+                <img src="https://png.pngtree.com/template/20190926/ourmid/pngtree-stack-of-paper-icon-vector-logo-stationery-stacked-papers-templa-image_309805.jpg" alt="Add/Remove Papers" style="width:150px">
+            </div>
+            <h3>Add/Remove Papers</h3>
+            </a>
+            <a href="#exams" class="card">
+            <div class="card-img">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAPjQb7bU4P9YUuQewuPQ1r-TYxCG_y5oUMA&s" alt="Manage Exams" style="width:230px;padding-top: 20px;">
+            </div>
+            <h3>Manage Exams</h3>
+            </a>
+        </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
