@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .sidebar {
+            width: 250px;
+            background: #333;
+            padding: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+        }
+        .sidebar h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .menu-item {
+            display: block;
+            padding: 12px 15px;
+            margin: 8px 0;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .menu-item:hover {
+            background: rgba(85, 83, 83, 0.933);
+        }
+        .navbar {
+            background-color: #777;
+            color: white;
+            padding: 15px 30px;
+            width: 100%;
+            text-align: center;
+            font-size: 22px;
+            position: fixed;
+            left: 250px;
+            top: 0;
+        }
+        .content {
+            margin-left: 250px;
+            margin-top: 60px;
+            padding: 20px;
+        }
+        #add-exam {
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .exam-container {
+            margin-top: 20px;
+        }
+        .exam-card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .exam-details {
+            margin-top: 10px;
+        }
+        .question-container {
+            margin-top: 10px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .add-question-btn, .create-exam-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .create-exam-btn {
+            background: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Exam Management</h2>
+        <a href="#" class="menu-item">Dashboard</a>
+        <a href="#" class="menu-item">Students</a>
+        <a href="#" class="menu-item">Papers</a>
+        <a href="#" class="menu-item">Exams</a>
+    </div>
+    <div class="navbar">
+        <span class="user-greeting">Hi, Batman</span>
+    </div>
+    <div class="content">
+        <h2>Manage Exams</h2>
+        <button id="add-exam">Add New Exam</button>
+        <div class="exam-container" id="exam-container"></div>
+    </div>
+    
+    <script>
+        document.getElementById('add-exam').addEventListener('click', function() {
+            let examContainer = document.getElementById('exam-container');
+            let examCard = document.createElement('div');
+            examCard.className = 'exam-card';
+            
+            examCard.innerHTML = `
+                <div class="exam-details">
+                    <input type="text" class="form-input exam-name" placeholder="Enter Exam Name">
+                    <label>Duration: <input type="number" class="form-input exam-duration" min="1" placeholder="Minutes"></label>
+                    <div class="question-container" id="question-container">
+                        <input type="text" class="form-input question-input" placeholder="Add Question">
+                    </div>
+                    <button class="add-question-btn">+ Add Question</button>
+                    <button class="create-exam-btn">Create Exam</button>
+                </div>
+            `;
+            
+            // Add question functionality
+            let addQuestionBtn = examCard.querySelector('.add-question-btn');
+            let questionContainer = examCard.querySelector('.question-container');
+            
+            addQuestionBtn.addEventListener('click', function() {
+                let newQuestionInput = document.createElement('input');
+                newQuestionInput.type = 'text';
+                newQuestionInput.className = 'form-input question-input';
+                newQuestionInput.placeholder = 'Add Question';
+                questionContainer.appendChild(newQuestionInput);
+            });
+            
+            // Create exam functionality
+            let createExamBtn = examCard.querySelector('.create-exam-btn');
+            createExamBtn.addEventListener('click', function() {
+                let examName = examCard.querySelector('.exam-name').value;
+                let examDuration = examCard.querySelector('.exam-duration').value;
+                let questions = Array.from(examCard.querySelectorAll('.question-input'))
+                    .map(input => input.value)
+                    .filter(q => q.trim() !== '');
+                
+                if (!examName) {
+                    alert('Please enter an exam name');
+                    return;
+                }
+                
+                if (!examDuration) {
+                    alert('Please enter exam duration');
+                    return;
+                }
+                
+                if (questions.length === 0) {
+                    alert('Please add at least one question');
+                    return;
+                }
+                
+                // Create a new exam card with final details
+                let finalExamCard = document.createElement('div');
+                finalExamCard.className = 'exam-card';
+                finalExamCard.innerHTML = `
+                    <h3>${examName}</h3>
+                    <p>Duration: ${examDuration} minutes</p>
+                    <p>Questions: ${questions.length}</p>
+                `;
+                
+                // Replace the creation card with the final exam card
+                examContainer.replaceChild(finalExamCard, examCard);
+            });
+            
+            examContainer.appendChild(examCard);
+        });
+    </script>
+</body>
+</html>
