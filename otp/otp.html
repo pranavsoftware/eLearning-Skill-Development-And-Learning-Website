@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: black;
+            padding: 20px;
+            text-align: center;
+            color: whitesmoke;
+        }
+
+        h2{
+            color: palevioletred;
+        }
+        .container {
+            max-width: 400px;
+            background: rgb(49, 49, 49);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        .header {
+            font-size: 22px;
+            font-weight: 600;
+            color: #4A90E2;
+            margin-bottom: 10px;
+        }
+        .otp {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            padding: 12px;
+            background: #ecf0f1;
+            display: inline-block;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .footer {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background: #4A90E2;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Welcome! {User}</div>
+        <h2>Your OTP Code</h2>
+        <p style="color: red; font-weight: bold;">Use the following OTP to verify your identity. Do not share it with anyone.</p>
+        <div class="otp">123456</div>
+        <p>This OTP is valid for 10 minutes.</p>
+        <a href="#" class="btn">Verify Now</a>
+        <div class="footer">If you didn’t request this, please ignore this email.</div>
+    </div>
+</body>
+</html>
+
